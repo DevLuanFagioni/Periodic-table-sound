@@ -1,0 +1,275 @@
+/* Styles for Element Sound Web App */
+
+/* Global Styles */
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --accent-color: #6200ee;
+  --secondary-accent: #03dac6;
+  --error-color: #cf6679;
+  --surface-color: #1e1e1e;
+  --border-radius: 4px;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header Styles */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--secondary-accent);
+}
+
+header p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.audio-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.volume-control, .oscillator-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="range"] {
+  width: 150px;
+  accent-color: var(--accent-color);
+}
+
+select {
+  padding: 8px 12px;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+}
+
+.stop-button {
+  padding: 8px 16px;
+  background-color: var(--error-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+}
+
+.stop-button:hover {
+  background-color: #e91e63;
+}
+
+/* Main Content Styles */
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (min-width: 1024px) {
+  main {
+    grid-template-columns: 3fr 1fr;
+  }
+}
+
+/* Periodic Table Styles */
+.periodic-table-container {
+  overflow-x: auto;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+}
+
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(60px, 1fr));
+  grid-template-rows: repeat(10, minmax(60px, auto));
+  gap: 4px;
+  width: 100%;
+  min-width: 1000px;
+}
+
+.element {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  background-color: var(--surface-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  user-select: none;
+}
+
+.element:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  z-index: 10;
+}
+
+.element.playing {
+  box-shadow: 0 0 20px var(--secondary-accent);
+  border-color: var(--secondary-accent);
+}
+
+.element .symbol {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.element .atomic-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.element .name {
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.element .wavelength {
+  font-size: 0.6rem;
+  opacity: 0.7;
+}
+
+/* Element Group Colors */
+.element.alkali-metal { background-color: rgba(255, 77, 77, 0.7); }
+.element.alkaline-earth { background-color: rgba(255, 166, 77, 0.7); }
+.element.transition-metal { background-color: rgba(255, 255, 77, 0.7); }
+.element.post-transition { background-color: rgba(166, 255, 77, 0.7); }
+.element.metalloid { background-color: rgba(77, 255, 77, 0.7); }
+.element.nonmetal { background-color: rgba(77, 255, 166, 0.7); }
+.element.halogen { background-color: rgba(77, 255, 255, 0.7); }
+.element.noble-gas { background-color: rgba(77, 166, 255, 0.7); }
+.element.lanthanide { background-color: rgba(166, 77, 255, 0.7); }
+.element.actinide { background-color: rgba(255, 77, 255, 0.7); }
+
+/* Info Panel Styles */
+.info-panel {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.element-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--secondary-accent);
+}
+
+.element-info p, .element-info ol {
+  margin-bottom: 10px;
+}
+
+.element-info ol {
+  padding-left: 20px;
+}
+
+.conversion-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail .label {
+  font-weight: bold;
+  color: var(--secondary-accent);
+}
+
+.visualization {
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+#waveform {
+  width: 100%;
+  height: 100%;
+}
+
+/* Footer Styles */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Lanthanide and Actinide Placement */
+.lanthanide-row, .actinide-row {
+  grid-column: 3 / span 15;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .audio-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .volume-control, .oscillator-control {
+    justify-content: space-between;
+  }
+  
+  input[type="range"] {
+    width: 100%;
+  }
+}

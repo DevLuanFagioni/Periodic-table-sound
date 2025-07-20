@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Sound - Periodic Table Audio Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Element Sound</h1>
+        <p>Explore the electromagnetic frequencies of elements as audible sounds</p>
+        
+        <div class="audio-controls">
+            <div class="volume-control">
+                <label for="volume">Volume:</label>
+                <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+            </div>
+            
+            <div class="oscillator-control">
+                <label for="oscillator-type">Sound Type:</label>
+                <select id="oscillator-type">
+                    <option value="sine">Sine (Smooth)</option>
+                    <option value="triangle">Triangle (Soft)</option>
+                    <option value="square">Square (Sharp)</option>
+                    <option value="sawtooth">Sawtooth (Bright)</option>
+                </select>
+            </div>
+            
+            <button id="stop-all" class="stop-button">Stop All Sounds</button>
+        </div>
+    </header>
+    
+    <main>
+        <div class="periodic-table-container">
+            <div id="periodic-table" class="periodic-table"></div>
+        </div>
+        
+        <div class="info-panel">
+            <div id="element-info" class="element-info">
+                <h2>Click on an element to hear its sound</h2>
+                <p>This application converts the electromagnetic frequencies of elements to audible sounds.</p>
+                <p>The conversion process:</p>
+                <ol>
+                    <li>Takes the element's emission spectrum wavelength (nm)</li>
+                    <li>Converts it to electromagnetic frequency</li>
+                    <li>Divides the frequency until it's in the piano range</li>
+                    <li>Quantizes to the nearest half step in western tempered tuning</li>
+                </ol>
+            </div>
+            
+            <div id="conversion-details" class="conversion-details">
+                <div class="detail">
+                    <span class="label">Element:</span>
+                    <span id="element-name" class="value">-</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Wavelength:</span>
+                    <span id="wavelength" class="value">-</span>
+                </div>
+                <div class="detail">
+                    <span class="label">EM Frequency:</span>
+                    <span id="em-frequency" class="value">-</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Audio Frequency:</span>
+                    <span id="audio-frequency" class="value">-</span>
+                </div>
+                <div class="detail">
+                    <span class="label">Musical Note:</span>
+                    <span id="musical-note" class="value">-</span>
+                </div>
+            </div>
+            
+            <div id="visualization" class="visualization">
+                <canvas id="waveform"></canvas>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Data sources: NIST Atomic Spectra Database, WebElements</p>
+        <p>Created by Manus AI</p>
+    </footer>
+    
+    <script src="data/elements.js"></script>
+    <script src="frequency_conversion.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
